@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-del-colo-deployment
+spec:
+  selector:
+    matchLabels:
+      app: web-del-colo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: web-del-colo
+    spec:
+      containers:
+      - name: web-del-colo
+        image: martooo/web-del-colo:4
+        ports:
+        - containerPort: 8080

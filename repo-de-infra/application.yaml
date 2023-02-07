@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: web-del-colo-application
+  namespace: argocd
+spec:
+  project: web-del-colo
+  source:
+    repoURL: https://github.com/martinsendati/repo-de-infra.git
+    path: dev
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: web-del-colo
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
